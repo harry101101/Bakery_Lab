@@ -1,11 +1,49 @@
-const Search = () => {
+import { useState } from "react";
+
+const Search = ({cakes}) => {
+
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const filteredCakes = cakes.filter((cake) => (cake.cakeName.toLowerCase().includes(searchTerm) && searchTerm !== ""));
+        setSearchResults(filteredCakes);
+    }
 
     return(
-        <form>
-            <label htmlFor="search-field">Search for a cake:</label>
-            <input type="text" id="search-field"/>
-            <input type="submit" />
-        </form>
+        <>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="search-field">Search for a cake:</label>
+                <input  type="text" 
+                        id="search-field"
+                        placeholder="Search"
+                        name="searchTerm"
+                        onChange={(event) => {setSearchTerm(event.target.value)}}
+                        value={searchTerm}/>
+                <input type="submit" value="OK" />
+            </form>
+            <section>
+                    {
+                    searchResults.map((cake, index) => {
+                        return(
+                            <div key={index}>
+                                <h3>{cake.cakeName}</h3>
+                                <ul>
+                                    {cake.ingredients.map((ingredient, index) => {
+                                        return(
+                                            <li key={index}>{ingredient}</li>
+                                        )
+                                    })}
+                                </ul>
+                            </div>
+                        )
+                    })
+                    }
+            </section>
+        </>
+        
+        
     )
 
 }

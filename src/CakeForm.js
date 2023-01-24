@@ -14,6 +14,7 @@ const CakeForm = ({addNewCake}) => {
             rating: rating
         };
         console.log("ingredients " + cake.ingredients);
+        addNewCake(cake);
     };
 
     const splitIngredients = (ingredientString) => {

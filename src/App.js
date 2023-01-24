@@ -27,11 +27,11 @@ function App() {
         ingredients: ["carrots", "walnuts", "oil", "cream cheese", "flour", "sugar"],
         rating: 5
     }
-])
+  ])
 
-const addNewCake = (newCake) => {
-  setCakes([...cakes, newCake]);
-}
+  const addNewCake = (newCake) => {
+    setCakes([...cakes, newCake]);
+  }
 
   return (
     <>
@@ -41,8 +41,8 @@ const addNewCake = (newCake) => {
       </header>
       <main>
         <RecipeList cakes={cakes}/>
-        <Search />
-        <CakeForm />
+        <Search cakes={cakes}/>
+        <CakeForm addNewCake={addNewCake}/>
       </main>
     </>
   );

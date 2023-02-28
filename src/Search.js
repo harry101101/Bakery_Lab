@@ -1,14 +1,19 @@
 import { useState } from "react";
 
-const Search = ({cakes}) => {
+const Search = ({filterCakes}) => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const filteredCakes = cakes.filter((cake) => (cake.cakeName.toLowerCase().includes(searchTerm) && searchTerm !== ""));
-        setSearchResults(filteredCakes);
+        // better to set up a filterCakes function in App.js, and pass the function down
+        // rather than to filter it here
+        
+        filterCakes(searchTerm);
+        
+        // const filteredCakes = cakes.filter((cake) => (cake.cakeName.toLowerCase().includes(searchTerm) && searchTerm !== ""));
+        // setSearchResults(filteredCakes);
     }
 
     return(

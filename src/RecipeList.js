@@ -22,6 +22,10 @@ const RecipeList = ({cakes}) => {
     //         rating: 5
     //     }
     // ]
+
+    const total =  cakes.reduce((total, cake) => total + cake.rating, 0);
+    const average = total / cakes.length;
+
     console.log(cakes);
     return (
         <>
@@ -45,7 +49,7 @@ const RecipeList = ({cakes}) => {
             </section>
             <section>
                 <h4>Average cake rating: </h4>
-                <p>{(cakes.reduce((total, cake) => total + cake.rating, 0) / cakes.length)}</p>
+                <p>{average}</p>
             </section>
         </>
     )

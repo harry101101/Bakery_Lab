@@ -33,6 +33,16 @@ function App() {
     setCakes([...cakes, newCake]);
   }
 
+  const [filteredCakes, setFilteredCakes] = useState("");
+
+  const filterCakes = (searchTerm) => {
+    // console.log(`${searchTerm}`)
+    const foundCakes = cakes.filter(cake => {
+      return cake.cakeName.toLowerCase().includes(searchTerm.toLowerCase())
+    })
+    setFilteredCakes(foundCakes);
+  }
+
   return (
     <>
       <header>
@@ -40,9 +50,12 @@ function App() {
         <Title />
       </header>
       <main>
-        <RecipeList cakes={cakes}/>
-        <Search cakes={cakes}/>
+        
+        <Search filterCakes={filterCakes}/>
         <CakeForm addNewCake={addNewCake}/>
+        {/* Ternary operator below: if filteredCakes exists, send filteredCakes into RecipeList*/}
+        {/* If there are no filteredCakes, send back just cakes */}
+        <RecipeList cakes={filteredCakes ? filteredCakes : cakes}/>
       </main>
     </>
   );
